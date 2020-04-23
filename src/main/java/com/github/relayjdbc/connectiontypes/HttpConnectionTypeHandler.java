@@ -20,7 +20,7 @@ class HttpConnectionTypeHandler extends ConnectionTypeHandler {
     private static Log _logger = LogFactory.getLog(HttpConnectionTypeHandler.class);
 
     HttpConnectionTypeHandler() {
-        super("http:");
+        super("http");
     }
 
     @Override
