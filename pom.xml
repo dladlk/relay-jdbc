@@ -5,7 +5,7 @@
     <name>relay-jdbc</name>
     <url>https://github.com/peter-gergely-horvath/relay-jdbc</url>
 
-    <groupId>com.github.peter-gergely-horvath</groupId>
+    <groupId>dk.truelink.relay-jdbc</groupId>
     <artifactId>relay-jdbc</artifactId>
     <version>3.1.0</version>
 
@@ -181,7 +181,7 @@
 
 
     <profiles>
-
+    
         <profile>
             <id>default</id>
             <activation>
@@ -211,6 +211,72 @@
                             <target>1.8</target>
                         </configuration>
                     </plugin>
+				</plugins>
+			</build>
+		</profile>	    
+
+        <profile>
+            <id>driver</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <version>2.4.1</version>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                            <filesets>
+                            </filesets>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.3.2</version>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <fork>true</fork>
+                            <compilerVersion>1.6</compilerVersion>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+                    
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>2.4</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<classifier>driver</classifier>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>2.4</version>
+						<executions>
+							<execution>
+								<id>default-install</id>
+								<phase>install</phase>
+								<goals>
+									<goal>install</goal>
+								</goals>
+								<configuration>
+									<classifier>driver</classifier>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>                    
 
                     <plugin>
                         <groupId>com.github.spotbugs</groupId>
@@ -235,7 +301,7 @@
                             <xmlOutput>true</xmlOutput>
 
                             <!-- Configures the directory in which the XML report is created -->
-                            <spotbugsXmlOutputDirectory>${project.build.directory}/sportbugs
+                            <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs
                             </spotbugsXmlOutputDirectory>
                         </configuration>
                         <executions>
@@ -249,7 +315,7 @@
                             </execution>
                         </executions>
                     </plugin>
-
+                    
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>xml-maven-plugin</artifactId>
@@ -258,14 +324,14 @@
                             <transformationSets>
                                 <transformationSet>
                                     <!-- Configures the source directory of XML files. -->
-                                    <dir>${project.build.directory}/sportbugs</dir>
+                                    <dir>${project.build.directory}/spotbugs</dir>
                                     <includes>
                                         <!-- only transform findbugsXml.xml to generate FindBugs HTML report -->
                                         <include>spotbugsXml.xml</include>
                                     </includes>
 
                                     <!-- Configures the directory in which the FindBugs report is written. -->
-                                    <outputDir>${project.build.directory}/sportbugs</outputDir>
+                                    <outputDir>${project.build.directory}/spotbugs</outputDir>
 
                                     <!-- Selects the used stylesheet. -->
                                     <!-- <stylesheet>fancy-hist.xsl</stylesheet> -->
@@ -312,6 +378,7 @@
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
+                                	<finalName>${artifactId}-${version}-driver</finalName>
                                     <artifactSet>
                                         <includes>
                                             <include>*:*</include>
@@ -455,7 +522,7 @@
                             </execution>
                         </executions>
                     </plugin>
-
+        
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
