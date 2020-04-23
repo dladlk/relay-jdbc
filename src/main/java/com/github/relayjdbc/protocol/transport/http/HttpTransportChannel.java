@@ -19,11 +19,13 @@ public class HttpTransportChannel implements TransportChannel {
 
     private HttpURLConnection conn;
 
+	private static boolean alreadyTrustAll = false;
+
     public HttpTransportChannel(URL url, RequestEnhancer requestEnhancer) {
         _url = url;
         _requestEnhancer = requestEnhancer;
     }
-
+    
     public InputStream sendAndWaitForResponse() throws IOException {
         if (conn == null) {
             throw new IllegalStateException("Not connected");
@@ -39,6 +41,18 @@ public class HttpTransportChannel implements TransportChannel {
     }
 
     public void open() throws IOException {
+    	/*
+    	 * TODO: Avoid trust all HTTPS - very insecure, as it is applied to ALL connections...
+    	 */
+    	if (!alreadyTrustAll) {
+    		try {
+    			HttpsTransportTrustAll.trustAll();
+    		}catch (Exception e) {
+    			e.printStackTrace();
+			}
+    		alreadyTrustAll = true;
+    	}
+    	
         conn = (HttpURLConnection) _url.openConnection();
         conn.setDoOutput(true);
         conn.setDoInput(true);
