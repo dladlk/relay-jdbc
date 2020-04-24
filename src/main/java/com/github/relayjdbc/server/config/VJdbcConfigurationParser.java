@@ -75,6 +75,13 @@ class VJdbcConfigurationParser {
 	
 	private static Digester createDigester(VJdbcConfiguration configuration) {
 	    Digester digester = new Digester();
+	    
+	    /*
+	     * When running devtools Spring Boot app, without line below Digester loads class not with actual class loader so it fails with reading configuration.
+	     * 
+	     * TODO: DLK: Remove digester.setUseContextClassLoader(true) it in future, when configuration loading in Spring Boot is replaced with database configuration
+	     */
+	    digester.setUseContextClassLoader(true);
 	
 	    digester.push(configuration);
 	
