@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.Arrays;
 
 import com.github.relayjdbc.command.Command;
 import com.github.relayjdbc.command.ConnectionContext;
@@ -141,5 +140,16 @@ public class CompositeCommand  implements Command, Externalizable {
 
 	synchronized UIDEx[] getUIDExs() {
 		return _uidexs;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getClass().getSimpleName());
+		sb.append(" ");
+		sb.append(this._size);
+		sb.append(" commands: ");
+		sb.append(Arrays.toString(this._commands));
+		return sb.toString();
 	}
 }

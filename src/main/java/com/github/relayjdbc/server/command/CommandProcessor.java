@@ -84,7 +84,7 @@ public class CommandProcessor {
             _timer.scheduleAtFixedRate(new OrphanedConnectionCollectorTask(), _occtConfig.getCheckingPeriodInMillis(), _occtConfig
                     .getCheckingPeriodInMillis());
         } else {
-            _logger.info("OCCT is turned off");
+            _logger.debug("OCCT is turned off");
         }
     }
 
@@ -149,7 +149,7 @@ public class CommandProcessor {
     }
 
     public void destroy() {
-        _logger.info("Destroying CommandProcessor ...");
+        _logger.debug("Destroying CommandProcessor ...");
 
         // Stop the timer
         if(_timer != null) {
@@ -173,15 +173,15 @@ public class CommandProcessor {
             _connectionEntries.clear();
         }
 
-        _logger.info("CommandProcessor successfully destroyed");
+        _logger.debug("CommandProcessor successfully destroyed");
     }
 
     public Object process(Long connuid, Long uid, Command cmd, CallingContext ctx) throws SQLException {
         Object result = null;
 
-        if(_logger.isDebugEnabled()) {
-            _logger.debug(cmd);
-        }
+		if (_logger.isInfoEnabled()) {
+			_logger.info(String.format("%s%s: %s", connuid, uid != null ? "-" + uid : "", cmd));
+		}
 
         if(connuid != null) {
             // Retrieving connection entry for the UID
