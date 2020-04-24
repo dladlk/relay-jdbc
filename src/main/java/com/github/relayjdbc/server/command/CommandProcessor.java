@@ -74,10 +74,17 @@ public class CommandProcessor {
         closeConnectionsOnKill = false;
     }
 
-    private CommandProcessor() {
-        _occtConfig = VJdbcConfiguration.singleton().getOcctConfiguration();
+    protected CommandProcessor() {
+        this(VJdbcConfiguration.singleton());
+    }
 
-        if(_occtConfig.getCheckingPeriodInMillis() > 0) {
+    protected CommandProcessor(VJdbcConfiguration configuration) {
+    	scheduleOCCT(configuration);
+    }
+
+	private void scheduleOCCT(VJdbcConfiguration configuration) {
+		_occtConfig = configuration.getOcctConfiguration();
+		if(_occtConfig.getCheckingPeriodInMillis() > 0) {
             _logger.debug("OCCT starts");
 
             _timer = new Timer(true);
@@ -86,12 +93,15 @@ public class CommandProcessor {
         } else {
             _logger.debug("OCCT is turned off");
         }
-    }
+	}
 
+	protected VJdbcConfiguration getConfiguration() {
+		return VJdbcConfiguration.singleton();
+	}
 
 
     public UIDEx createConnection(String url, Properties props, Properties clientInfo, CallingContext ctx) throws SQLException {
-        ConnectionConfiguration connectionConfiguration = VJdbcConfiguration.singleton().getConnection(url);
+        ConnectionConfiguration connectionConfiguration = getConfiguration().getConnection(url);
 
         if(connectionConfiguration != null) {
             _logger.debug("Found connection configuration " + connectionConfiguration.getId());

@@ -9,7 +9,7 @@ import org.apache.commons.digester.substitution.VariableSubstitutor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-class VJdbcConfigurationParser {
+public class VJdbcConfigurationParser {
 
     private static final Log _logger = LogFactory.getLog(VJdbcConfigurationParser.class);
 

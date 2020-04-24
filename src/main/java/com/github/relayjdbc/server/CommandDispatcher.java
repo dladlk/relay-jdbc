@@ -131,7 +131,7 @@ public class CommandDispatcher {
         Properties clientInfo = kryo.readObject(input, Properties.class);
         CallingContext ctx = kryo.readObjectOrNull(input, CallingContext.class);
 
-        ConnectionConfiguration connectionConfiguration = VJdbcConfiguration.singleton().getConnection(url);
+        ConnectionConfiguration connectionConfiguration = getConnectionConfiguration(url);
 
         if (connectionConfiguration == null) {
             return new SQLException("Relay Connection '" + url + "' not found");
@@ -146,6 +146,10 @@ public class CommandDispatcher {
 
 
     }
+
+	protected ConnectionConfiguration getConnectionConfiguration(String url) {
+		return VJdbcConfiguration.singleton().getConnection(url);
+	}
 
 
 }
