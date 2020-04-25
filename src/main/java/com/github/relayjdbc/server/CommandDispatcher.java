@@ -131,6 +131,20 @@ public class CommandDispatcher {
         Properties clientInfo = kryo.readObject(input, Properties.class);
         CallingContext ctx = kryo.readObjectOrNull(input, CallingContext.class);
 
+        String dbUserName = props.getProperty("user");
+        String dbPassword = props.getProperty("password");
+        
+        if (!props.containsKey(RelayJdbcProperties.LOGIN_USER)) {
+        	if (dbUserName != null) {
+        		props.put(RelayJdbcProperties.LOGIN_USER, dbUserName);
+        	}
+        }
+        if (!props.containsKey(RelayJdbcProperties.LOGIN_PASSWORD)) {
+        	if (dbPassword != null) {
+        		props.put(RelayJdbcProperties.LOGIN_PASSWORD, dbPassword);
+        	}
+        }
+        
         ConnectionConfiguration connectionConfiguration = getConnectionConfiguration(url);
 
         if (connectionConfiguration == null) {
