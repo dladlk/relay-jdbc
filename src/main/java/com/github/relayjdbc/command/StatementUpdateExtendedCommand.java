@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class StatementUpdateExtendedCommand implements Command, KryoSerializable {
+public class StatementUpdateExtendedCommand extends AbstractCommand implements KryoSerializable {
     private static final long serialVersionUID = 3690198762949851445L;
 
     private String _sql;

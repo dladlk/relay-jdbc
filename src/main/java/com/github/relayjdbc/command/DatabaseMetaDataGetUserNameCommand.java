@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import com.github.relayjdbc.RelayJdbcProperties;
 
-public class DatabaseMetaDataGetUserNameCommand implements Command {
+public class DatabaseMetaDataGetUserNameCommand extends AbstractCommand {
 
 	static final long serialVersionUID = 3543492350930057039L;;
 	

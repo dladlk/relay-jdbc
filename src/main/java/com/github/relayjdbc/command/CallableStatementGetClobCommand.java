@@ -14,7 +14,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.serial.SerialClob;
 
-public class CallableStatementGetClobCommand implements Command, KryoSerializable {
+public class CallableStatementGetClobCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 8230491873823084213L;
 
     private int _index;

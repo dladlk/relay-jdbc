@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionPrepareCallCommand implements Command, KryoSerializable {
+public class ConnectionPrepareCallCommand extends AbstractCommand implements KryoSerializable {
     private static final int TYPE_ARG4 = 7;
 
 	private static final int TYPE_ARG3 = 3;

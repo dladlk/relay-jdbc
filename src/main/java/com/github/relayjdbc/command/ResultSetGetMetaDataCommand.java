@@ -12,7 +12,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ResultSetGetMetaDataCommand implements Command,KryoSerializable {
+public class ResultSetGetMetaDataCommand extends AbstractCommand implements KryoSerializable {
     private static final long serialVersionUID = 3258411737794558008L;
 
     public ResultSetGetMetaDataCommand() {

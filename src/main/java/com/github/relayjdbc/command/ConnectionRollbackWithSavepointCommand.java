@@ -12,7 +12,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionRollbackWithSavepointCommand implements Command, KryoSerializable {
+public class ConnectionRollbackWithSavepointCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = -5189425307111618293L;
 
     private Long _uidOfSavepoint;

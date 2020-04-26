@@ -8,7 +8,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.sql.SQLException;
 
-public class PingCommand implements Command {
+public class PingCommand extends AbstractCommand {
     static final long serialVersionUID = 3340327873423851L;
 
     public static final PingCommand INSTANCE = new PingCommand(); 

@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class PreparedStatementUpdateCommand implements Command {
+public class PreparedStatementUpdateCommand extends AbstractCommand {
     static final long serialVersionUID = 8987200111317750567L;
 
     protected PreparedStatementParameter[] _params;

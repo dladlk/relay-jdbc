@@ -13,7 +13,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class PreparedStatementExecuteCommand implements Command,KryoSerializable {
+public class PreparedStatementExecuteCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 8987200111317750567L;
 
     protected PreparedStatementParameter[] _params;

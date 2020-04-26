@@ -6,7 +6,7 @@ import java.io.ObjectOutput;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionGetMetaDataCommand implements Command {
+public class ConnectionGetMetaDataCommand extends AbstractCommand {
 
 	public static final ConnectionGetMetaDataCommand INSTANCE = new ConnectionGetMetaDataCommand();
 	

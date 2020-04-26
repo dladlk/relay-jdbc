@@ -14,7 +14,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.serial.SerialRef;
 
-public class CallableStatementGetRefCommand implements Command, KryoSerializable {
+public class CallableStatementGetRefCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 6253579473434177231L;
 
     private int _index;

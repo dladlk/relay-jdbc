@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class PreparedStatementQueryCommand implements Command, ResultSetProducerCommand {
+public class PreparedStatementQueryCommand extends AbstractCommand implements ResultSetProducerCommand {
     static final long serialVersionUID = -7028150330288724130L;
 
     protected PreparedStatementParameter[] _params;

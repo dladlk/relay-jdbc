@@ -14,7 +14,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 // TODO avoid reading characters in constructor, read characters on serializing
-public class CallableStatementSetCharacterStreamCommand implements Command,KryoSerializable {
+public class CallableStatementSetCharacterStreamCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 8952810867158345906L;
 
     private int _index;

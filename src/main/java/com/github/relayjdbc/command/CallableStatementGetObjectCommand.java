@@ -16,7 +16,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.VirtualCallableStatement;
 
-public class CallableStatementGetObjectCommand implements Command, KryoSerializable {
+public class CallableStatementGetObjectCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 7045834396073252820L;
 
     private int _index;

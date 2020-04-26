@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public class ConnectionCreateStatementCommand implements Command {
+public class ConnectionCreateStatementCommand extends AbstractCommand {
 
 	public static final ConnectionCreateStatementCommand INSTANCE = new ConnectionCreateStatementCommand();
 	

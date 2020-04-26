@@ -14,7 +14,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class CallableStatementSetAsciiStreamCommand implements Command, KryoSerializable {
+public class CallableStatementSetAsciiStreamCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = -6772875360380241530L;
 
     private int _index;

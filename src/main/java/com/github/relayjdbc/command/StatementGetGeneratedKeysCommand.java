@@ -12,7 +12,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class StatementGetGeneratedKeysCommand implements Command, ResultSetProducerCommand,KryoSerializable {
+public class StatementGetGeneratedKeysCommand extends AbstractCommand implements ResultSetProducerCommand,KryoSerializable {
     static final long serialVersionUID = -6529413105195105196L;
 
     public StatementGetGeneratedKeysCommand() {

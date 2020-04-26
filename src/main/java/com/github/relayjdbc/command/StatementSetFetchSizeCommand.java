@@ -6,7 +6,7 @@ import java.io.ObjectOutput;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class StatementSetFetchSizeCommand implements Command {
+public class StatementSetFetchSizeCommand extends AbstractCommand {
 
 	private int _value;
 	

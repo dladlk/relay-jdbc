@@ -7,7 +7,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.sql.SQLException;
 
-public class NextRowPacketCommand implements Command {
+public class NextRowPacketCommand extends AbstractCommand {
     static final long serialVersionUID = -8463588846424302034L;
 
     public static final NextRowPacketCommand INSTANCE = new NextRowPacketCommand();

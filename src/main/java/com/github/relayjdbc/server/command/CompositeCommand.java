@@ -7,6 +7,7 @@ import java.io.ObjectOutput;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+import com.github.relayjdbc.command.AbstractCommand;
 import com.github.relayjdbc.command.Command;
 import com.github.relayjdbc.command.ConnectionContext;
 import com.github.relayjdbc.serial.UIDEx;
@@ -18,7 +19,7 @@ import com.github.relayjdbc.serial.UIDEx;
  * @author semenov
  *
  */
-public class CompositeCommand  implements Command, Externalizable {
+public class CompositeCommand extends AbstractCommand implements Externalizable {
 	private static final int INCREMENT = 5;
 	
 	private Command[] _commands = new Command[INCREMENT];

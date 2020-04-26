@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class StatementCancelCommand implements Command,KryoSerializable {  
+public class StatementCancelCommand extends AbstractCommand implements KryoSerializable {  
     private static final long serialVersionUID = 5602747945115861740L;
 
     public StatementCancelCommand() {

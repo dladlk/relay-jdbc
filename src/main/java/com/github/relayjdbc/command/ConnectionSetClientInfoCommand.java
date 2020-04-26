@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionSetClientInfoCommand implements Command,Serializable, KryoSerializable {
+public class ConnectionSetClientInfoCommand extends AbstractCommand implements Serializable, KryoSerializable {
 
 	public static final long serialVersionUID = 1;
 

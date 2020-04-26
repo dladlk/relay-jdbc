@@ -17,7 +17,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.serial.SerialSQLXML;
 
-public class CallableStatementSetSQLXMLCommand implements Command,KryoSerializable {
+public class CallableStatementSetSQLXMLCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 7396654168665073844L;
 
     private int _index;

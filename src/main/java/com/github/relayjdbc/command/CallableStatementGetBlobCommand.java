@@ -14,7 +14,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class CallableStatementGetBlobCommand implements Command, KryoSerializable {
+public class CallableStatementGetBlobCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = -2976001646644624286L;
 
     private int _index;

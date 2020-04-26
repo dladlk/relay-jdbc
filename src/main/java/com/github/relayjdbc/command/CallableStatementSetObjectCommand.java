@@ -12,7 +12,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class CallableStatementSetObjectCommand implements Command,KryoSerializable {
+public class CallableStatementSetObjectCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = -9132697894345849726L;
 
 //    private int _index;

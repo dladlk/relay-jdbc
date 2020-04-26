@@ -12,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.github.relayjdbc.server.command.ResultSetHolder;
 
-public class DestroyCommand implements Command {
+public class DestroyCommand extends AbstractCommand {
     static final long serialVersionUID = 4457392123395584636L;
 
     public static final DestroyCommand INSTANCE = new DestroyCommand();

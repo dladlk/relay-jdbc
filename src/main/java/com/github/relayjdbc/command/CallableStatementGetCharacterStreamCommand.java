@@ -18,7 +18,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.serial.StreamSerializer;
 
-public class CallableStatementGetCharacterStreamCommand implements Command, KryoSerializable {
+public class CallableStatementGetCharacterStreamCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = 3594832624574651235L;
 
     private int _index;

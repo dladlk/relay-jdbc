@@ -6,7 +6,7 @@ import java.io.ObjectOutput;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionCommitCommand implements Command {
+public class ConnectionCommitCommand extends AbstractCommand {
     static final long serialVersionUID = 6221665321426908025L;
 
     public static final ConnectionCommitCommand INSTANCE = new ConnectionCommitCommand();

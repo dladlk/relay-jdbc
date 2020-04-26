@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 
-public class ReflectiveCommand implements Command, Externalizable,KryoSerializable {
+public class ReflectiveCommand extends AbstractCommand implements Externalizable,KryoSerializable {
     static final long serialVersionUID = 1573361368678688726L;
 
     private static Log _logger = LogFactory.getLog(ReflectiveCommand.class);

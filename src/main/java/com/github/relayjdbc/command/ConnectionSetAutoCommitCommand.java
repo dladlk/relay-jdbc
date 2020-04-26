@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionSetAutoCommitCommand implements Command, KryoSerializable {
+public class ConnectionSetAutoCommitCommand extends AbstractCommand implements KryoSerializable {
 
 	private boolean _value;
 	

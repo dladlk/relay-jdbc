@@ -17,7 +17,7 @@ import com.esotericsoftware.kryo.io.Output;
 
 import com.github.relayjdbc.serial.SerialRowId;
 
-public class CallableStatementSetRowIdCommand implements Command,KryoSerializable {
+public class CallableStatementSetRowIdCommand extends AbstractCommand implements KryoSerializable {
     static final long serialVersionUID = -2847792562974087927L;
 
     private int _index;
