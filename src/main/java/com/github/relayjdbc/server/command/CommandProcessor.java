@@ -139,9 +139,13 @@ public class CommandProcessor {
         // calling-contexts should be delivered at all
         int performanceProfile = PerformanceConfig.getPerformanceProfile(config.getCompressionModeAsInt(), config.getCompressionThreshold(), config.getRowPacketSize());
         UIDEx reg = new UIDEx(config.isTraceOrphanedObjects() ? 1 : 0, performanceProfile);
-        _connectionEntries.put(reg.getUID(), new ConnectionEntry(reg.getUID(), conn, config, clientInfo, ctx));
+        _connectionEntries.put(reg.getUID(), buildConnectionEntry(conn, config, clientInfo, ctx, reg));
         return reg;
     }
+
+	protected ConnectionEntry buildConnectionEntry(Connection conn, ConnectionConfiguration config, Properties clientInfo, CallingContext ctx, UIDEx reg) {
+		return new ConnectionEntry(reg.getUID(), conn, config, clientInfo, ctx);
+	}
 
     public void registerJDBCObject(Long connid, Registerable obj)
     {
