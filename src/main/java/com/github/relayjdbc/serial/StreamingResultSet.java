@@ -45,7 +45,7 @@ public class StreamingResultSet implements ResultSet, Externalizable,KryoSeriali
 
     /** current page (aka {@link RowPacket})
      * _page.getIndex()*_rowPacketSize +_cursor = current row number */
-    private transient RowPacket _page = null;
+    protected transient RowPacket _page = null;
     private transient Future<Object> _nextPage;
     private transient int _lastReadColumn = -1;
     /** column values of current page */

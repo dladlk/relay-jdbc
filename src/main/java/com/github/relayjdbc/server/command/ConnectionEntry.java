@@ -381,11 +381,11 @@ class ConnectionEntry implements ConnectionContext {
 
     private Object handleResultSet(ResultSet result, boolean forwardOnly, CallingContext ctx) throws SQLException {
         // Populate a StreamingResultSet
-        StreamingResultSet srs = new StreamingResultSet(
+        StreamingResultSet srs = buildResultSet(
                 _rowPacketSize,
                 forwardOnly,
                 _connectionConfiguration.isPrefetchResultSetMetaData(),
-                _connectionConfiguration.getCharset());
+                _connectionConfiguration.getCharset());        		
         // Populate it
         ResultSetMetaData metaData = result.getMetaData();
         boolean lastPartReached = srs.populate(result, metaData);
@@ -398,6 +398,15 @@ class ConnectionEntry implements ConnectionContext {
         }
         return srs;
     }
+
+	protected StreamingResultSet buildResultSet(int rowPacketSize, boolean forwardOnly, boolean prefetchMetaData, String charset) {
+		StreamingResultSet srs = new StreamingResultSet(
+				rowPacketSize,
+                forwardOnly,
+                prefetchMetaData,
+                charset);
+		return srs;
+	}
 
     private Object handleResultSetMetaData(ResultSetMetaData result) throws SQLException {
         return new SerialResultSetMetaData(result);
