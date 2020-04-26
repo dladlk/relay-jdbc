@@ -45,7 +45,7 @@ public class StreamingResultSet implements ResultSet, Externalizable,KryoSeriali
 
     /** current page (aka {@link RowPacket})
      * _page.getIndex()*_rowPacketSize +_cursor = current row number */
-    protected transient RowPacket _page = null;
+    private transient RowPacket _page = null;
     private transient Future<Object> _nextPage;
     private transient int _lastReadColumn = -1;
     /** column values of current page */
@@ -53,6 +53,8 @@ public class StreamingResultSet implements ResultSet, Externalizable,KryoSeriali
     private transient int _fetchDirection;
     private transient boolean _prefetchMetaData;
     private transient Statement _statement;
+
+	private transient StreamingResultSetListener _populateListener;
 
     protected void finalize() throws Throwable {
         super.finalize();
@@ -145,6 +147,10 @@ public class StreamingResultSet implements ResultSet, Externalizable,KryoSeriali
 
         _lastPartReached = _page.isLastPart();
 
+        if (_populateListener != null) {
+        	_populateListener.populate(rs, metaData, _page, this);
+        }
+        
         return _lastPartReached;
     }
 
@@ -1269,5 +1275,9 @@ public class StreamingResultSet implements ResultSet, Externalizable,KryoSeriali
 	    	_pages.add(_page);
 	    }
         _columnValues = _page.getFlattenedColumnsValues();
+	}
+
+	public void setPopulateListener(StreamingResultSetListener populateListener) {
+		this._populateListener = populateListener;
 	}
 }
