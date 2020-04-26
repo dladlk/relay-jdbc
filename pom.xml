@@ -86,6 +86,8 @@
         <xml-maven-plugin.version>1.0</xml-maven-plugin.version>
         <maven-source-plugin.version>3.0.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <!-- TODO: Remove spotbugs.skip=true when ready -->
+        <spotbugs.skip>true</spotbugs.skip>
     </properties>
 
     <dependencies>
