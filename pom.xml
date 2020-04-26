@@ -381,7 +381,7 @@
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
-                                	<finalName>${artifactId}-${version}-driver</finalName>
+                                	<finalName>${project.artifactId}-${project.version}-driver</finalName>
                                     <artifactSet>
                                         <includes>
                                             <include>*:*</include>
