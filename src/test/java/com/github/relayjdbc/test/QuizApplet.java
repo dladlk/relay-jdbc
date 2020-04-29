@@ -118,7 +118,7 @@ public class QuizApplet extends Applet {
 
     public void init() {
         try {
-            Class.forName("com.github.relayjdbc.RelayDriver").newInstance();
+            Class.forName("net.truedevelop.relayjdbc.RelayDriver").newInstance();
 
             _cardLayout = new CardLayout();
             setLayout(_cardLayout);

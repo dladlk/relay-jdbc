@@ -10,7 +10,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import com.github.relayjdbc.RelayJdbcProperties;
-import com.github.relayjdbc.RelayDriver;
+import net.truedevelop.relayjdbc.RelayDriver;
 import com.github.relayjdbc.serial.StreamSerializer;
 import junit.framework.Test;
 import junit.framework.TestCase;

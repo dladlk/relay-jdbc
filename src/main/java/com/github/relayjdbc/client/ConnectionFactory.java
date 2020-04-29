@@ -1,6 +1,5 @@
 package com.github.relayjdbc.client;
 
-import com.github.relayjdbc.RelayDriver;
 import com.github.relayjdbc.RelayJdbcProperties;
 import com.github.relayjdbc.VirtualConnection;
 import com.github.relayjdbc.command.*;
@@ -9,6 +8,9 @@ import com.github.relayjdbc.connectiontypes.ConnectionTypeHandler;
 import com.github.relayjdbc.serial.CallingContext;
 import com.github.relayjdbc.serial.UIDEx;
 import com.github.relayjdbc.util.ClientInfo;
+
+import net.truedevelop.relayjdbc.RelayDriver;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

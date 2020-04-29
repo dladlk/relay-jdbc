@@ -5,7 +5,7 @@
     <name>relay-jdbc</name>
     <url>https://github.com/peter-gergely-horvath/relay-jdbc</url>
 
-    <groupId>dk.truelink.relay-jdbc</groupId>
+    <groupId>net.truedevelop.relay-jdbc</groupId>
     <artifactId>relay-jdbc</artifactId>
     <version>3.1.0</version>
 
