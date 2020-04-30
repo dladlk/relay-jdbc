@@ -3,6 +3,7 @@ package com.github.relayjdbc.connectiontypes;
 public enum ConnectionType {
 
     HTTP(new HttpConnectionTypeHandler()),
+    HTTPS(new HttpsConnectionTypeHandler()),
     SSH_PIPE(new SshPipeConnectionTypeHandler());
 
     public ConnectionTypeHandler getConnectionTypeHandler() {
