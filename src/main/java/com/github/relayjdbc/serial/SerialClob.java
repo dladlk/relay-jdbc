@@ -20,6 +20,15 @@ public class SerialClob implements Clob, Externalizable, KryoSerializable {
     }
 
     public SerialClob(Clob other) throws SQLException {
+    	/*
+    	 * DB2 Driver returns NULL Clob if value is null - check it here
+    	 * 
+    	 * TODO: Review whether similar issues are for other LOB types
+    	 */
+    	if (other == null) {
+    		_data = null;
+    		return;
+    	}
         try {
             StringWriter sw = new StringWriter();
             Reader rd = other.getCharacterStream();
