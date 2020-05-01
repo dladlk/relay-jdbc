@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import com.github.relayjdbc.server.command.CommandProcessor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -22,7 +21,7 @@ public class VJdbcConfiguration {
 
     private OcctConfiguration _occtConfiguration = new OcctConfiguration();
     private RmiConfiguration _rmiConfiguration;
-    private List _connections = new ArrayList();
+    protected List<ConnectionConfiguration> _connections = new ArrayList<ConnectionConfiguration>();
     private static boolean useStreamingResultSet = true;
     // used for testing purposes only, emulates ping time between client and server
     private long _emulatePingTime = 0L;
@@ -110,7 +109,7 @@ public class VJdbcConfiguration {
      * @return ConnectionConfiguration or null
      */
     public ConnectionConfiguration getConnection(String name) {
-        for(Iterator it = _connections.iterator(); it.hasNext();) {
+        for(Iterator<ConnectionConfiguration> it = _connections.iterator(); it.hasNext();) {
             ConnectionConfiguration connectionConfiguration = (ConnectionConfiguration)it.next();
             if(connectionConfiguration.getId().equals(name)) {
                 return connectionConfiguration;
@@ -136,7 +135,7 @@ public class VJdbcConfiguration {
 
     void validateConnections() throws ConfigurationException {
         // Call the validation method of the configuration
-        for(Iterator it = _connections.iterator(); it.hasNext();) {
+        for(Iterator<ConnectionConfiguration> it = _connections.iterator(); it.hasNext();) {
             ConnectionConfiguration connectionConfiguration = (ConnectionConfiguration)it.next();
             connectionConfiguration.validate();
         }
@@ -147,7 +146,7 @@ public class VJdbcConfiguration {
             _rmiConfiguration.log();
         }
         _occtConfiguration.log();
-        for(Iterator it = _connections.iterator(); it.hasNext();) {
+        for(Iterator<ConnectionConfiguration> it = _connections.iterator(); it.hasNext();) {
             ConnectionConfiguration connectionConfiguration = (ConnectionConfiguration)it.next();
             connectionConfiguration.log();
         }
@@ -161,4 +160,7 @@ public class VJdbcConfiguration {
 		this._emulatePingTime = emulatePingTime;
 	}
 
+	public List<ConnectionConfiguration> getConnections() {
+		return this._connections;
+	}
 }
