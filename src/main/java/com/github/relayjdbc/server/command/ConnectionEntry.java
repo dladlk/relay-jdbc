@@ -41,7 +41,7 @@ import com.github.relayjdbc.server.config.VJdbcConfiguration;
 import com.github.relayjdbc.util.ClientInfo;
 import com.github.relayjdbc.util.PerformanceConfig;
 
-class ConnectionEntry implements ConnectionContext {
+public class ConnectionEntry implements ConnectionContext {
     private static Log _logger = LogFactory.getLog(ConnectionEntry.class);
 
     // Unique identifier for the ConnectionEntry
@@ -69,7 +69,7 @@ class ConnectionEntry implements ConnectionContext {
 
     // Map containing all JDBC-Objects which are created by this Connection
     // entry
-    private Map<Long, JdbcObjectHolder> _jdbcObjects = new ConcurrentHashMap<Long, JdbcObjectHolder>();
+    protected Map<Long, JdbcObjectHolder> _jdbcObjects = new ConcurrentHashMap<Long, JdbcObjectHolder>();
     // Map for counting commands
     private ConcurrentMap<String, AtomicInteger> _commandCountMap = new ConcurrentHashMap<String, AtomicInteger>();
 

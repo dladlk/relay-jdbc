@@ -41,7 +41,7 @@ public class CommandProcessor {
 
     private static boolean closeConnectionsOnKill = true;
     private Timer _timer = null;
-    private Map<Long, ConnectionEntry> _connectionEntries = new ConcurrentHashMap<Long, ConnectionEntry>();
+    protected Map<Long, ConnectionEntry> _connectionEntries = new ConcurrentHashMap<Long, ConnectionEntry>();
     private OcctConfiguration _occtConfig;
 
     public static CommandProcessor getInstance() {
