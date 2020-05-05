@@ -135,7 +135,7 @@ public class CompositeCommand extends AbstractCommand implements Externalizable 
 		}
 	}
 
-	synchronized Command[] getCommands() {
+	public synchronized Command[] getCommands() {
 		return _commands;
 	}
 
