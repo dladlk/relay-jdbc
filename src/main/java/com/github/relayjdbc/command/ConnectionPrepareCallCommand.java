@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionPrepareCallCommand extends AbstractCommand implements KryoSerializable {
+public class ConnectionPrepareCallCommand extends AbstractCommand implements KryoSerializable, ISqlCommand {
     private static final int TYPE_ARG4 = 7;
 
 	private static final int TYPE_ARG3 = 3;
@@ -117,5 +117,9 @@ public class ConnectionPrepareCallCommand extends AbstractCommand implements Kry
         		_resultSetHoldability = input.readInt();
         	}
         }		
+	}
+	
+	public String getSql() {
+		return _sql;
 	}
 }

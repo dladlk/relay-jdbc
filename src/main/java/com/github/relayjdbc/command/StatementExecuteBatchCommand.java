@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class StatementExecuteBatchCommand extends AbstractCommand implements KryoSerializable {
+public class StatementExecuteBatchCommand extends AbstractCommand implements KryoSerializable, ISqlCommand {
     static final long serialVersionUID = -995205757280796006L;
 
     private String[] _sql;
@@ -58,4 +58,14 @@ public class StatementExecuteBatchCommand extends AbstractCommand implements Kry
 	public void read(Kryo kryo, Input input) {
 		_sql = kryo.readObjectOrNull(input, String[].class);
 	}
+	
+	public String getSql() {
+		/*
+		 * TODO DLK: BatchExecute 
+		 */
+		if (_sql.length > 0) {
+			return _sql[0];
+		}
+		return null;
+	}	
 }

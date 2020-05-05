@@ -6,7 +6,7 @@ import java.io.ObjectOutput;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class StatementUpdateCommand extends AbstractCommand {
+public class StatementUpdateCommand extends AbstractCommand implements ISqlCommand {
     private static final long serialVersionUID = 3689069560279937335L;
 
     private String _sql;
@@ -37,4 +37,8 @@ public class StatementUpdateCommand extends AbstractCommand {
     public String toString() {
         return "StatementUpdateCommand: " + _sql;
     }
+    
+	public String getSql() {
+		return _sql;
+	}
 }

@@ -11,7 +11,7 @@ import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 
-public class ConnectionPrepareStatementExtendedCommand extends AbstractCommand implements KryoSerializable {
+public class ConnectionPrepareStatementExtendedCommand extends AbstractCommand implements KryoSerializable, ISqlCommand {
     private static final long serialVersionUID = 3760559793366120249L;
 
     private String _sql;
@@ -86,5 +86,7 @@ public class ConnectionPrepareStatementExtendedCommand extends AbstractCommand i
 		_columnNames = kryo.readObjectOrNull(input, String[].class);		
 	}
     
-    
+	public String getSql() {
+		return _sql;
+	}    
 }
