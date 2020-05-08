@@ -60,12 +60,13 @@ public class StatementExecuteBatchCommand extends AbstractCommand implements Kry
 	}
 	
 	public String getSql() {
-		/*
-		 * TODO DLK: BatchExecute 
-		 */
 		if (_sql.length > 0) {
 			return _sql[0];
 		}
 		return null;
-	}	
+	}
+	
+	public String[] getSqlList() {
+		return _sql;
+	}
 }
