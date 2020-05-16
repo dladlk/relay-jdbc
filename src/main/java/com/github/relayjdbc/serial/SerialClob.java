@@ -38,7 +38,19 @@ public class SerialClob implements Clob, Externalizable, KryoSerializable {
                 sw.write(buff, 0, len);
             }
             _data = sw.toString().toCharArray();
-            other.free();
+
+            boolean doFree = true;
+            if (other.getClass().getName().equals("net.sourceforge.jtds.jdbc.ClobImpl")) {
+            	/*
+            	 * DbVis on DDL tab for SQL Server receives AbstractMethodError, because free() is not implemented in JTDS Clob
+            	 * 
+            	 * Let's skip it there.
+            	 */
+            	doFree = false;
+            }
+            if (doFree) {
+            	other.free();
+            }
         } catch(IOException e) {
             throw new SQLException("Can't retrieve contents of Clob", e.toString());
         }
