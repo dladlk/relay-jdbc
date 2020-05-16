@@ -20,7 +20,7 @@ public class HttpsTransportChannel implements TransportChannel {
 
 	private HttpURLConnection conn;
 
-	private static boolean installedCustomSSLSocketFactory = false;
+	private boolean installedCustomSSLSocketFactory = false;
 
 	public HttpsTransportChannel(URL url, RequestEnhancer requestEnhancer, String _trustedFingerprint) {
 		_url = url;
@@ -43,14 +43,15 @@ public class HttpsTransportChannel implements TransportChannel {
 	}
 
 	public void open() throws IOException {
-
-		if (!installedCustomSSLSocketFactory) {
-			try {
-				HttpsTransportTrustAll.trustDefaultButAlso(this._trustedFingerprint);
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (this._trustedFingerprint != null) {
+			if (!installedCustomSSLSocketFactory) {
+				try {
+					HttpsTransportTrustAll.trustDefaultButAlso(this._trustedFingerprint);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				installedCustomSSLSocketFactory = true;
 			}
-			installedCustomSSLSocketFactory = true;
 		}
 
 		conn = (HttpURLConnection) _url.openConnection();
