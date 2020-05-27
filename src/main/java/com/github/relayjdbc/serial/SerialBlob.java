@@ -18,6 +18,15 @@ public class SerialBlob implements Blob, Externalizable,KryoSerializable {
     }
 
     public SerialBlob(Blob other) throws SQLException {
+    	/*
+    	 * DB2 Driver returns NULL Blob if value is null - check it here
+    	 * 
+    	 * TODO: Review whether similar issues are for other LOB types
+    	 */
+    	if (other == null) {
+    		_data = null;
+    		return;
+    	}
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream(4096);
             InputStream is = other.getBinaryStream();
