@@ -90,10 +90,12 @@ public class CommandDispatcher {
 
             String clientVersion = kryo.readObject(input, String.class);
             if (!KryoServletCommandSink.PROTOCOL_VERSION.equals(clientVersion)) {
-                String errorMsg = String.format("DataFormat version mismatch: expected %s but was %s",
-                        KryoServletCommandSink.PROTOCOL_VERSION, clientVersion);
-                logger.warn(errorMsg);
-                throw new RuntimeException(errorMsg);
+            	if (!allowedMinorVersionDifference(KryoServletCommandSink.PROTOCOL_VERSION, clientVersion)) {
+	                String errorMsg = String.format("DataFormat version mismatch: expected %s but was %s. Only minor version (after last dot) is allowed to be different",
+	                        KryoServletCommandSink.PROTOCOL_VERSION, clientVersion);
+	                logger.warn(errorMsg);
+	                throw new RuntimeException(errorMsg);
+            	}
             }
         } catch (Exception ex) {
             logger.warn("Handshake failed", ex);
@@ -104,7 +106,21 @@ public class CommandDispatcher {
 
     }
 
-    private Object dispatchProcess(Kryo kryo, Input input, DeflatingOutput output) throws SQLException {
+    protected static boolean allowedMinorVersionDifference(String protocolVersion, String clientVersion) {
+    	return extractMajorVersion(protocolVersion).equals(extractMajorVersion(clientVersion));
+	}
+
+	private static String extractMajorVersion(String version) {
+		if (version != null) {
+			int lastDot = version.lastIndexOf('.');
+			if (lastDot > 0) {
+				return version.substring(0, lastDot);
+			}
+		}
+		return "";
+	}
+
+	private Object dispatchProcess(Kryo kryo, Input input, DeflatingOutput output) throws SQLException {
         logger.info("dispatchProcess");
 
         // Read parameter objects
