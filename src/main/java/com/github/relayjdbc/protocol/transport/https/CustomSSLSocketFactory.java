@@ -20,8 +20,8 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -144,7 +144,7 @@ public class CustomSSLSocketFactory extends SSLSocketFactory {
 			byte[] der = cert.getEncoded();
 			md.update(der);
 			byte[] digest = md.digest();
-			String digestHex = DatatypeConverter.printHexBinary(digest);
+			String digestHex = String.valueOf(Hex.encodeHex(digest));
 			return digestHex.toLowerCase();
 		} catch (Exception e) {
 			return "Failed to calculate thumbprint for " + cert + ": " + e.getMessage();
